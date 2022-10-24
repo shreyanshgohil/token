@@ -12,7 +12,7 @@ config();
 const startServerHandler = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URL);
-    console.log("connected to db")
+    console.log("connected to db");
     const apolloServer = new ApolloServer({
       typeDefs: indexTypeDefs,
       resolvers: indexResolvers,
