@@ -20,13 +20,22 @@ const tokenResolvers = {
         console.log(err);
       }
     },
+    filterTokens: async (parent, args, context, info) => {
+      try {
+        const { typeOfToken } = args;
+        const allToken = await Tokens.find({ typeOfToken });
+        return allToken;
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
   Mutation: {
     createToken: async (parent, args, context, info) => {
       try {
-        const { token, adminId, adminPassword } = args;
-        if ((token, adminId, adminPassword)) {
-          const searchedUser = await User.findOne({ _id: adminId });
+        const { token, adminPassword } = args;
+        if ((token, adminPassword)) {
+          const searchedUser = await User.findOne({ _id: token.tokenCreator });
           const isAdminAllowed = await bcrypt.compare(
             adminPassword,
             searchedUser.password
@@ -70,7 +79,7 @@ const tokenResolvers = {
     },
     deleteToken: async (parent, args, context, info) => {
       try {
-        const { adminId, adminPassword ,tokenId} = args;
+        const { adminId, adminPassword, tokenId } = args;
         if ((tokenId, adminId, adminPassword)) {
           const searchedUser = await User.findOne({ _id: adminId });
           const searchedToken = await Tokens.findOne({ _id: tokenId });

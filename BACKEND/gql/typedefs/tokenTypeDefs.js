@@ -5,27 +5,30 @@ const tokenTypeDefs = gql`
     _id: ID
     tokenColor: String
     tokenName: String
-    freeTokenquantity: Int
-    paidTokenquantity: Int
-    paidTokenPrice: Int
+    tokenPrice: Int
+    totalTokenQuntity: Int
+    typeOfToken: Int
     tokenBuyerName: String
     tokenCreator: ID
+    availableTokenQuntity: Int
   }
   input tokenInput {
     tokenColor: String
     tokenName: String
-    freeTokenquantity: Int
-    paidTokenquantity: Int
-    paidTokenPrice: Int
+    tokenPrice: Int
+    totalTokenQuntity: Int
+    typeOfToken: Int
     tokenBuyerName: String
     tokenCreator: ID
+    availableTokenQuntity: Int
   }
   type Query {
     getAllTokens: [Token]
     getSingleToken(id: ID!): Token
+    filterTokens(typeOfToken: Int): [Token]
   }
   type Mutation {
-    createToken(token: tokenInput, adminId: ID!, adminPassword: String!): String
+    createToken(token: tokenInput!, adminPassword: String!): String
     updateToken(
       token: tokenInput
       adminId: ID!

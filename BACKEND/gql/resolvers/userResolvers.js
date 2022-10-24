@@ -4,13 +4,20 @@ const userResolvers = {
   Query: {
     getAllUsers: async (parent, args, context, info) => {
       try {
-        return "hello from my first call";
+        const users = await User.find();
+        return users;
       } catch (err) {
         console.log(err);
       }
     },
-    getSingleUser: (parent, args, context, info) => {
-      console.log(args);
+    getSingleUser: async (parent, args, context, info) => {
+      try {
+        const { emailId } = args;
+        const user = await User.findOne({ email: emailId });
+        return user;
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
   Mutation: {
@@ -33,9 +40,9 @@ const userResolvers = {
     },
     updateUser: async (parent, args, context, info) => {
       try {
-        const { id, password } = args;
+        const { emailId, password } = args;
         const { user: payloadUserData } = args;
-        const searchedUser = await User.findOne({ _id: id });
+        const searchedUser = await User.findOne({ _id: emailId });
 
         if (!payloadUserData.password && password) {
           const isValidPassword = await bcrypt.compare(
@@ -73,8 +80,8 @@ const userResolvers = {
       }
     },
     deleteUser: async (parent, args, context, info) => {
-      const { id, password } = args;
-      const searchedUser = await User.findOne({ _id: id });
+      const { emailId, password } = args;
+      const searchedUser = await User.findOne({ email: emailId });
       if (searchedUser) {
         const isValidPassword = await bcrypt.compare(
           password,

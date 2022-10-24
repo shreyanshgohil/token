@@ -12,25 +12,29 @@ const tokenSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    freeTokenquantity: {
-      type: Number,
-      default: 0,
-    },
-    paidTokenquantity: {
-      type: Number,
-      default: 0,
-    },
-    paidTokenPrice: {
+    tokenPrice: {
       type: Number,
       required: true,
     },
-    tokenBuyerName: {
-      type: String,
+    totalTokenQuntity: {
+      type: Number,
       required: true,
+    },
+    availableTokenQuntity: {
+      type: Number,
+      required: true,
+    },
+    typeOfToken: {
+      type: Number,
+      required: true,
+      enum: [0, 1],
     },
     tokenCreator: {
       type: String,
       required: true,
+    },
+    tokenBuyerName: {
+      type: String,
     },
   },
   { timestamps: true }

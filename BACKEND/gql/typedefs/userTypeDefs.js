@@ -1,9 +1,10 @@
 import { gql } from "apollo-server-express";
 const userTypeDefs = gql`
   type User {
+    _id: ID
     userName: String
-    email: String
     password: String
+    email: String
     typeOfUser: Int
   }
   input UserInput {
@@ -13,18 +14,18 @@ const userTypeDefs = gql`
     typeOfUser: Int
   }
   type Query {
-    getAllUsers: String
-    getSingleUser(id: ID!): User
+    getAllUsers: [User]
+    getSingleUser(emailId: String!): User
   }
   type Mutation {
     createUser(user: UserInput): String
     updateUser(
       user: UserInput
-      id: ID!
+      emailId: String!
       password: String
       newPassword: String
     ): String
-    deleteUser(id: ID!, password: String!): String
+    deleteUser(emailId: String!, password: String!): String
   }
 `;
 
