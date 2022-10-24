@@ -9,7 +9,7 @@ const index = () => {
   // Inits
   const [tokensType, setTokenTypes] = useState(1);
   const [tokens, setTokens] = useState([]);
-
+  const [tokensDuplicate, setTokensDuplicate] = useState([]);
   //   Handle the changes of the selectBox
   const filterTokensHandler = (event) => {
     setTokenTypes(+event.target.value);
