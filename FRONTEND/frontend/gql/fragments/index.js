@@ -6,10 +6,9 @@ export const TOKEN_FRAGMENT = gql`
     tokenColor
     tokenName
     tokenPrice
-    totalTokenQuntity
+    totalTokenQuantity
     typeOfToken
-    tokenBuyerName
     tokenCreator
-    availableTokenQuntity
+    availableTokenQuantity
   }
 `;

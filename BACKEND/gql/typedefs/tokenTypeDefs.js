@@ -6,21 +6,23 @@ const tokenTypeDefs = gql`
     tokenColor: String
     tokenName: String
     tokenPrice: Int
-    totalTokenQuntity: Int
+    totalTokenQuantity: Int
     typeOfToken: Int
-    tokenBuyerName: String
     tokenCreator: ID
-    availableTokenQuntity: Int
+    availableTokenQuantity: Int
   }
   input tokenInput {
     tokenColor: String
     tokenName: String
     tokenPrice: Int
-    totalTokenQuntity: Int
+    totalTokenQuantity: Int
     typeOfToken: Int
-    tokenBuyerName: String
     tokenCreator: ID
-    availableTokenQuntity: Int
+    availableTokenQuantity: Int
+  }
+  input updateQuantity {
+    _id: ID
+    availableTokenQuantity: Int
   }
   type Query {
     getAllTokens: [Token]
@@ -36,6 +38,7 @@ const tokenTypeDefs = gql`
       tokenId: ID!
     ): String
     deleteToken(adminId: ID!, adminPassword: String!, tokenId: ID!): String
+    updateQuantity(updateData: [updateQuantity]): String
   }
 `;
 export default tokenTypeDefs;

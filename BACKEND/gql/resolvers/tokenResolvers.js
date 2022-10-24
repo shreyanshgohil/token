@@ -34,7 +34,7 @@ const tokenResolvers = {
     createToken: async (parent, args, context, info) => {
       try {
         const { token, adminPassword } = args;
-        if ((token, adminPassword)) {
+        if (token && adminPassword) {
           const searchedUser = await User.findOne({ _id: token.tokenCreator });
           const isAdminAllowed = await bcrypt.compare(
             adminPassword,
@@ -57,7 +57,7 @@ const tokenResolvers = {
     updateToken: async (parent, args, context, info) => {
       try {
         const { token, adminId, adminPassword, tokenId } = args;
-        if ((token, adminId, adminPassword)) {
+        if (token && adminId && adminPassword) {
           const searchedUser = await User.findOne({ _id: adminId });
           const searchedToken = await Tokens.findOne({ _id: tokenId });
           const isAdminAllowed = await bcrypt.compare(
@@ -80,7 +80,7 @@ const tokenResolvers = {
     deleteToken: async (parent, args, context, info) => {
       try {
         const { adminId, adminPassword, tokenId } = args;
-        if ((tokenId, adminId, adminPassword)) {
+        if (tokenId && adminId && adminPassword) {
           const searchedUser = await User.findOne({ _id: adminId });
           const searchedToken = await Tokens.findOne({ _id: tokenId });
           const isAdminAllowed = await bcrypt.compare(
@@ -99,6 +99,9 @@ const tokenResolvers = {
       } catch (err) {
         console.log(err);
       }
+    },
+    updateQuantity: (parent, args, context, info) => {
+      console.log(args);
     },
   },
 };

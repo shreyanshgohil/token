@@ -11,12 +11,12 @@ const SingleToken = (props) => {
   const changeQuantityHandler = (event) => {
     const value = event.target.value;
     console.log(value);
-    if (value <= token.availableTokenQuntity && value >= 0) {
+    if (value <= token.availableTokenQuantity && value >= 0) {
       setQuantity(value);
     }
   };
   const incrementQuantityHandler = () => {
-    if (quantity < token.availableTokenQuntity) {
+    if (quantity < token.availableTokenQuantity) {
       setQuantity((prevState) => prevState + 1);
     }
   };
@@ -32,7 +32,7 @@ const SingleToken = (props) => {
         <p>{token.tokenPrice}</p>
       </td>
       <td>
-        <p>{token.availableTokenQuntity}</p>
+        <p>{token.availableTokenQuantity}</p>
       </td>
       <td className="w-[209px]">
         <div className="w-[209px] flex gap-4">

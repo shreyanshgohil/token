@@ -43,7 +43,6 @@ const userResolvers = {
         const { emailId, password } = args;
         const { user: payloadUserData } = args;
         const searchedUser = await User.findOne({ _id: emailId });
-
         if (!payloadUserData.password && password) {
           const isValidPassword = await bcrypt.compare(
             password,

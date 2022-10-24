@@ -16,11 +16,11 @@ const tokenSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    totalTokenQuntity: {
+    totalTokenQuantity: {
       type: Number,
       required: true,
     },
-    availableTokenQuntity: {
+    availableTokenQuantity: {
       type: Number,
       required: true,
     },
@@ -32,9 +32,6 @@ const tokenSchema = new mongoose.Schema(
     tokenCreator: {
       type: String,
       required: true,
-    },
-    tokenBuyerName: {
-      type: String,
     },
   },
   { timestamps: true }
