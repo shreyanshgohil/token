@@ -2,8 +2,7 @@ import React from "react";
 import SingleToken from "./SingleToken";
 const TokenPurchaseTable = (props) => {
   // inits
-  const { tokens, tokensDuplicate, changeQuantityHandler } = props;
-
+  const { tokens, tokensDuplicate, changeQuantityHandler, grandTotal } = props;
   // JSX
   return (
     <div>
@@ -32,6 +31,12 @@ const TokenPurchaseTable = (props) => {
               );
             })}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={4}>Total Payment</td>
+              <td>{grandTotal}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

@@ -3,6 +3,7 @@ import React from "react";
 const SingleToken = (props) => {
   // Inits
   const { token, tokensDuplicate, changeQuantityHandler, index } = props;
+
   // Decrement the quantity
   const decrementQuantityHandler = () => {
     if (tokensDuplicate.quantity > 0) {
@@ -27,7 +28,7 @@ const SingleToken = (props) => {
 
   // JSX
   return (
-    <tr key={token._id}>
+    <tr>
       <td>
         <span
           style={{ background: `${token.tokenColor}` }}
@@ -52,7 +53,7 @@ const SingleToken = (props) => {
           <button onClick={incrementQuantityHandler}>+</button>
         </div>
       </td>
-      <td> {token.tokenPrice * tokensDuplicate.quantity} </td>
+      <td> {tokensDuplicate.total} </td>
     </tr>
   );
 };

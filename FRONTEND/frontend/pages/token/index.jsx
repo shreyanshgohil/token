@@ -10,7 +10,7 @@ const index = () => {
   const [tokensType, setTokenTypes] = useState(1);
   const [tokens, setTokens] = useState([]);
   const [tokensDuplicate, setTokensDuplicate] = useState([]);
-
+  const [grandTotal, setGrandTotal] = useState(0);
   // Creating duplicate array for the api calling
   const setDuplicateArray = (duplicateTokens) => {
     const newArray = duplicateTokens.map((token) => {
@@ -18,6 +18,7 @@ const index = () => {
         quantity: 0,
         id: token._id,
         availableTokenQuantity: token.availableTokenQuantity,
+        total: 0,
       };
     });
     setTokensDuplicate(newArray);
@@ -65,8 +66,12 @@ const index = () => {
       ...newState[index],
       quantity,
       availableTokenQuantity: tokens[index].availableTokenQuantity - quantity,
+      total: tokens[index].tokenPrice * quantity,
     };
     setTokensDuplicate(newState);
+    let grandTotal = 0;
+    newState.forEach((token) => (grandTotal += token.total));
+    setGrandTotal(grandTotal);
   };
 
   //   calling the api function based in every change on filter
@@ -91,7 +96,7 @@ const index = () => {
     await fetchDataHander();
   };
 
-  //   JSX codeFFF
+  //   JSX code
   return (
     <div>
       <div>
@@ -112,6 +117,7 @@ const index = () => {
                 tokens={tokens}
                 tokensDuplicate={tokensDuplicate}
                 changeQuantityHandler={changeQuantityHandler}
+                grandTotal={grandTotal}
               />
             </div>
           )}
