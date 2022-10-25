@@ -1,16 +1,25 @@
 import { gql } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import { USER_FRAGMENT } from "../gql/fragments";
 import client from "../gql/clients";
+import { useRouter } from "next/router";
+import Link from "next/link";
 const login = () => {
   // Inits
   const [formData, setFormData] = useState({ email: "", password: "" });
-
+  const { dispatch } = useContext(UserContext);
+  const router = useRouter();
   // Login gql schema
   const LOGIN_SCHEMA = gql`
+    ${USER_FRAGMENT}
     query ($emailId: String!, $password: String!) {
       loginUser(emailId: $emailId, password: $password) {
         message
         success
+        user {
+          ...userFields
+        }
       }
     }
   `;
@@ -24,7 +33,11 @@ const login = () => {
         password: formData.password,
       },
     });
-    console.log(data);
+
+    if (data.loginUser.success) {
+      dispatch({ type: "ADD_USER", payload: data.loginUser.user });
+      router.push("/token");
+    }
   };
 
   // function for handler the form
@@ -44,7 +57,6 @@ const login = () => {
       };
     });
   };
-  console.log(formData, "jsdfdsfsdkjndfkjn");
 
   // JSX
   return (
@@ -91,12 +103,12 @@ const login = () => {
                 </button>
                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                   Don't have an account?
-                  <a
-                    href="#!"
-                    className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                  <Link
+                    className="!text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                    href="/register"
                   >
                     Register
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>

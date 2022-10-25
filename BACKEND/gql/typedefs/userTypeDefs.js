@@ -9,6 +9,7 @@ const userTypeDefs = gql`
   type StatusMessage {
     success: Boolean
     message: String
+    user: User
   }
   input UserInput {
     userName: String

@@ -12,3 +12,10 @@ export const TOKEN_FRAGMENT = gql`
     availableTokenQuantity
   }
 `;
+export const USER_FRAGMENT = gql`
+  fragment userFields on User {
+    userName
+    email
+    typeOfUser
+  }
+`;

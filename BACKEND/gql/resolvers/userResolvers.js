@@ -29,7 +29,11 @@ const userResolvers = {
             searchedUser.password
           );
           if (isValidUser) {
-            return { success: true, message: "email and password are correct" };
+            return {
+              success: true,
+              message: "email and password are correct",
+              user: searchedUser,
+            };
           } else {
             return { success: false, message: "password is incorrect" };
           }

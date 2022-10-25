@@ -1,6 +1,6 @@
 import React from "react";
 
-const registor = () => {
+const register = () => {
   return (
     <>
       <div className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
@@ -299,4 +299,4 @@ const registor = () => {
   );
 };
 
-export default registor;
+export default register;
