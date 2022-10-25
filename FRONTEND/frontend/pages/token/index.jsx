@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TokenPurchaseTable from "../../components/TokenPurchaseTable";
 import TokenDataTable from "../../components/TokenDataTable";
 import client from "../../gql/clients";
 import { gql } from "@apollo/client";
 import { TOKEN_FRAGMENT } from "../../gql/fragments";
+import { UserContext } from "../../context/UserContext";
+import Link from "next/link";
 
 const index = () => {
   // Inits
@@ -11,6 +13,7 @@ const index = () => {
   const [tokens, setTokens] = useState([]);
   const [tokensDuplicate, setTokensDuplicate] = useState([]);
   const [grandTotal, setGrandTotal] = useState(0);
+  const { user, dispatch } = useContext(UserContext);
 
   // Creating duplicate array for the api calling
   const setDuplicateArray = (duplicateTokens) => {
@@ -97,12 +100,16 @@ const index = () => {
     await fetchDataHander();
   };
 
+  // logout user
+  const logoutHandler = () => {
+    dispatch({ type: "REMOVE_USER" });
+  };
   //   JSX code
   return (
     <div>
       <div className="p-10">
         <div className="top">
-          <div className="filter mb-4">
+          <div className="filter mb-4 flex items-center justify-between">
             <select
               onChange={filterTokensHandler}
               className="border border-solid border-white px-2"
@@ -112,6 +119,13 @@ const index = () => {
                 Paid
               </option>
             </select>
+            <div className="">
+              {user ? (
+                <button onClick={logoutHandler}>Logout</button>
+              ) : (
+                <Link href={"/login"}>Login</Link>
+              )}
+            </div>
           </div>
         </div>
         <div>
