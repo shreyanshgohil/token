@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import SingleToken from "./SingleToken";
 const TokenPurchaseTable = (props) => {
-  const { tokens } = props;
+  // inits
+  const { tokens, tokensDuplicate, changeQuantityHandler } = props;
 
+  // JSX
   return (
     <div>
       <div>
@@ -20,7 +22,12 @@ const TokenPurchaseTable = (props) => {
             {tokens.map((token, index) => {
               return (
                 <React.Fragment key={index}>
-                  <SingleToken token={token} index={index} />
+                  <SingleToken
+                    token={token}
+                    tokensDuplicate={tokensDuplicate[index]}
+                    index={index}
+                    changeQuantityHandler={changeQuantityHandler}
+                  />
                 </React.Fragment>
               );
             })}

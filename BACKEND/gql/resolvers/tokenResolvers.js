@@ -100,8 +100,25 @@ const tokenResolvers = {
         console.log(err);
       }
     },
-    updateQuantity: (parent, args, context, info) => {
-      console.log(args);
+    updateQuantity: async (parent, args, context, info) => {
+      try {
+        const { updateData } = args;
+        await Promise.all(
+          updateData.map(async (singleUpdate) => {
+            await Tokens.updateOne(
+              { _id: singleUpdate._id },
+              {
+                $set: {
+                  availableTokenQuantity: singleUpdate.availableTokenQuantity,
+                },
+              }
+            );
+          })
+        );
+        return "Quntity updated successfully";
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };
