@@ -1,12 +1,39 @@
+import { gql } from "@apollo/client";
 import React, { useState } from "react";
-
+import client from "../gql/clients";
 const login = () => {
+  // Inits
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const loginHandler = () => {};
+
+  // Login gql schema
+  const LOGIN_SCHEMA = gql`
+    query ($emailId: String!, $password: String!) {
+      loginUser(emailId: $emailId, password: $password) {
+        message
+        success
+      }
+    }
+  `;
+
+  // function which call login api
+  const loginHandler = async () => {
+    const { data } = await client.query({
+      query: LOGIN_SCHEMA,
+      variables: {
+        emailId: formData.email,
+        password: formData.password,
+      },
+    });
+    console.log(data);
+  };
+
+  // function for handler the form
   const formHandler = (event) => {
     event.preventDefault();
     loginHandler();
   };
+
+  // function for handle the change in inputs
   const formChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -17,7 +44,9 @@ const login = () => {
       };
     });
   };
-  console.log(formData,"jsdfdsfsdkjndfkjn")
+  console.log(formData, "jsdfdsfsdkjndfkjn");
+
+  // JSX
   return (
     <section className="h-screen">
       <div className="px-6 h-full text-gray-800">

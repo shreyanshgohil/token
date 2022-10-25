@@ -6,6 +6,10 @@ const userTypeDefs = gql`
     email: String
     typeOfUser: Int
   }
+  type StatusMessage {
+    success: Boolean
+    message: String
+  }
   input UserInput {
     userName: String
     email: String
@@ -15,6 +19,7 @@ const userTypeDefs = gql`
   type Query {
     getAllUsers: [User]
     getSingleUser(emailId: String!): User
+    loginUser(emailId: String!, password: String!): StatusMessage
   }
   type Mutation {
     createUser(user: UserInput): String

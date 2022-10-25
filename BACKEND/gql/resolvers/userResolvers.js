@@ -19,6 +19,27 @@ const userResolvers = {
         console.log(err);
       }
     },
+    loginUser: async (parent, args, context, info) => {
+      const { emailId, password } = args;
+      if (emailId && password) {
+        const searchedUser = await User.findOne({ email: emailId });
+        if (searchedUser) {
+          const isValidUser = await bcrypt.compare(
+            password,
+            searchedUser.password
+          );
+          if (isValidUser) {
+            return { success: true, message: "email and password are correct" };
+          } else {
+            return { success: false, message: "password is incorrect" };
+          }
+        } else {
+          return { success: false, message: "user not found" };
+        }
+      } else {
+        return { success: false, message: "please enter email and passowrd" };
+      }
+    },
   },
   Mutation: {
     createUser: async (parent, args, context, info) => {
@@ -42,7 +63,7 @@ const userResolvers = {
       try {
         const { emailId, password } = args;
         const { user: payloadUserData } = args;
-        const searchedUser = await User.findOne({ _id: emailId });
+        const searchedUser = await User.findOne({ email: emailId });
         if (!payloadUserData.password && password) {
           const isValidPassword = await bcrypt.compare(
             password,
