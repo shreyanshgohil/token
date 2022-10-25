@@ -36,7 +36,7 @@ const login = () => {
 
     if (data.loginUser.success) {
       dispatch({ type: "ADD_USER", payload: data.loginUser.user });
-      router.push("/token");
+      router.push("/");
     }
   };
 
