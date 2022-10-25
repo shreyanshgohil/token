@@ -49,6 +49,7 @@ const index = () => {
   const fetchDataHander = async () => {
     const { data: listOfTokens } = await client.query({
       query: MY_QUERY,
+      fetchPolicy: "no-cache",
       variables: {
         tokenType: tokensType,
       },
@@ -123,12 +124,11 @@ const index = () => {
           </button>
         </div>
         <div className="token-data">
-          <TokenDataTable />
+          <TokenDataTable tokens={tokens} />
         </div>
       </div>
     </div>
   );
 };
 
-// export async function getServerSideProps() {}
 export default index;
