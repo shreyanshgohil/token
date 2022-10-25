@@ -3,7 +3,6 @@ import React from "react";
 const SingleToken = (props) => {
   // Inits
   const { token, tokensDuplicate, changeQuantityHandler, index } = props;
-
   // Decrement the quantity
   const decrementQuantityHandler = () => {
     if (tokensDuplicate.quantity > 0) {
@@ -14,7 +13,7 @@ const SingleToken = (props) => {
   // Handle the change of input
   const tokenChangeQuantityHandler = (event) => {
     const value = event.target.value;
-    if (tokensDuplicate.availableTokenQuantity > 0 && value >= 0) {
+    if (value <= token.availableTokenQuantity && value >= 0) {
       changeQuantityHandler(index, +value);
     }
   };
@@ -42,11 +41,11 @@ const SingleToken = (props) => {
         <p>{tokensDuplicate.availableTokenQuantity}</p>
       </td>
       <td className="w-[209px]">
-        <div className="w-[209px] flex gap-4">
+        <div className="w-[209px] ">
           <button onClick={decrementQuantityHandler}>-</button>
           <input
             type="number"
-            className="focus:outline-none border-solid border border-white"
+            className="focus:outline-none text-center"
             value={tokensDuplicate.quantity}
             onChange={tokenChangeQuantityHandler}
           />

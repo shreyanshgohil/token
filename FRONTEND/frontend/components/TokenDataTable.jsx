@@ -2,7 +2,6 @@ import React from "react";
 
 const TokenDataTable = (props) => {
   const { tokens } = props;
-  console.log(tokens);
   return (
     <div>
       <table>
@@ -15,9 +14,9 @@ const TokenDataTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {tokens.map((token) => {
+          {tokens.map((token, i) => {
             return (
-              <tr>
+              <tr key={i}>
                 <td>{token.tokenName}</td>
                 <td>{token.totalTokenQuantity}</td>
                 <td>{token.availableTokenQuantity}</td>

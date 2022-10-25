@@ -11,7 +11,7 @@ const TokenPurchaseTable = (props) => {
         <table border="1px solid white" className="w-full text-center">
           <thead>
             <tr>
-              <td>Colour </td>
+              <td>Color </td>
               <td> Price </td>
               <td> Available </td>
               <td> Quantity </td>
