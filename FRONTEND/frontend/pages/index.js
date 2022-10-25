@@ -62,6 +62,7 @@ const HomePage = () => {
     });
     setTokens(listOfTokens.filterTokens);
     setDuplicateArray(listOfTokens.filterTokens);
+    setGrandTotal(0);
   };
 
   // change Quantity Handler
