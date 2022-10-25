@@ -2,9 +2,7 @@ import React, { useState } from "react";
 
 const login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
-
-  const loginHandler = () => {
-  };
+  const loginHandler = () => {};
   const formHandler = (event) => {
     event.preventDefault();
     loginHandler();
@@ -19,7 +17,7 @@ const login = () => {
       };
     });
   };
-
+  console.log(formData,"jsdfdsfsdkjndfkjn")
   return (
     <section className="h-screen">
       <div className="px-6 h-full text-gray-800">

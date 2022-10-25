@@ -11,6 +11,7 @@ const index = () => {
   const [tokens, setTokens] = useState([]);
   const [tokensDuplicate, setTokensDuplicate] = useState([]);
   const [grandTotal, setGrandTotal] = useState(0);
+
   // Creating duplicate array for the api calling
   const setDuplicateArray = (duplicateTokens) => {
     const newArray = duplicateTokens.map((token) => {
@@ -99,10 +100,13 @@ const index = () => {
   //   JSX code
   return (
     <div>
-      <div>
+      <div className="p-10">
         <div className="top">
-          <div className="filter">
-            <select onChange={filterTokensHandler}>
+          <div className="filter mb-4">
+            <select
+              onChange={filterTokensHandler}
+              className="border border-solid border-white px-2"
+            >
               <option value="0">Free</option>
               <option value="1" selected={true}>
                 Paid
@@ -121,13 +125,22 @@ const index = () => {
               />
             </div>
           )}
-
-          <button type="button" onClick={SubmitCangesHandler}>
-            Submit
-          </button>
-          <button type="button" onClick={fetchDataHander}>
-            Reset
-          </button>
+          <div className="flex items-center py-6 gap-4">
+            <button
+              type="button"
+              onClick={SubmitCangesHandler}
+              className="text-center flex-1 py-4 bg-[#ffa500] text-black font-semibold"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              className="text-center flex-1 py-4 bg-[#ddd] text-black font-semibold"
+              onClick={fetchDataHander}
+            >
+              Reset
+            </button>
+          </div>
         </div>
         <div className="token-data">
           <TokenDataTable tokens={tokens} />

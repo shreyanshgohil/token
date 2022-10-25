@@ -3,6 +3,7 @@ import SingleToken from "./SingleToken";
 const TokenPurchaseTable = (props) => {
   // inits
   const { tokens, tokensDuplicate, changeQuantityHandler, grandTotal } = props;
+
   // JSX
   return (
     <div>
