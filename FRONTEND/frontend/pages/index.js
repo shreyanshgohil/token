@@ -130,11 +130,14 @@ const HomePage = () => {
                   Paid
                 </option>
               </select>
-              <div className="">
+              <div className="flex items-center gap-2">
                 {user ? (
                   <button onClick={logoutHandler}>Logout</button>
                 ) : (
                   <Link href={"/login"}>Login</Link>
+                )}
+                {user?.typeOfUser === 1 && (
+                  <Link href={"/createadmin"}>createadmin</Link>
                 )}
               </div>
             </div>
