@@ -87,14 +87,21 @@ const tokenResolvers = {
             adminPassword,
             searchedUser.password
           );
-          if (isAdminAllowed && searchedUser.typeOfUser === 1) {
-            await searchedToken.deleteOne();
-            return "Token deleted sucessfully";
+          if (searchedToken) {
+            if (isAdminAllowed && searchedUser.typeOfUser === 1) {
+              await searchedToken.deleteOne();
+              return { status: 200, message: "Token deleted sucessfully" };
+            } else {
+              return {
+                status: 405,
+                message: "You are not allowed to delete an token",
+              };
+            }
           } else {
-            return "You are not allowed to delete an token";
+            return { status: 405, message: "token not found" };
           }
         } else {
-          return "Please enter all required data";
+          return { status: 405, message: "Please enter all required data " };
         }
       } catch (err) {
         console.log(err);

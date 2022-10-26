@@ -34,6 +34,11 @@ const HomePage = () => {
     setTokenTypes(+event.target.value);
   };
 
+  // remove from duplicate
+  const removeTokenHandler = (id) => {
+    setTokens((prevState) => prevState.filter((token) => token._id !== id));
+  };
+
   //   GQL Query for token data
   const MY_QUERY = gql`
     ${TOKEN_FRAGMENT}
@@ -134,37 +139,46 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div>
-            {tokens.length > 0 && (
-              <div className="token-purchase">
-                <TokenPurchaseTable
-                  tokens={tokens}
-                  tokensDuplicate={tokensDuplicate}
-                  changeQuantityHandler={changeQuantityHandler}
-                  grandTotal={grandTotal}
-                />
+          {tokens.length > 0 ? (
+            <div>
+              <div>
+                {tokens.length > 0 && (
+                  <div className="token-purchase">
+                    <TokenPurchaseTable
+                      tokens={tokens}
+                      tokensDuplicate={tokensDuplicate}
+                      changeQuantityHandler={changeQuantityHandler}
+                      grandTotal={grandTotal}
+                      removeTokenHandler={removeTokenHandler}
+                    />
+                  </div>
+                )}
+                <div className="flex items-center py-6 gap-4">
+                  <button
+                    type="button"
+                    onClick={SubmitCangesHandler}
+                    className="text-center flex-1 py-4 bg-[#ffa500] text-black font-semibold"
+                  >
+                    Submit
+                  </button>
+                  <button
+                    type="button"
+                    className="text-center flex-1 py-4 bg-[#ddd] text-black font-semibold"
+                    onClick={fetchDataHander}
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
-            )}
-            <div className="flex items-center py-6 gap-4">
-              <button
-                type="button"
-                onClick={SubmitCangesHandler}
-                className="text-center flex-1 py-4 bg-[#ffa500] text-black font-semibold"
-              >
-                Submit
-              </button>
-              <button
-                type="button"
-                className="text-center flex-1 py-4 bg-[#ddd] text-black font-semibold"
-                onClick={fetchDataHander}
-              >
-                Reset
-              </button>
+              <div className="token-data">
+                <TokenDataTable tokens={tokens} />
+              </div>
             </div>
-          </div>
-          <div className="token-data">
-            <TokenDataTable tokens={tokens} />
-          </div>
+          ) : (
+            <h3 className="text-center uppercase font-bold text-4xl p-8">
+              No tokens available
+            </h3>
+          )}
         </div>
       </div>
     </>

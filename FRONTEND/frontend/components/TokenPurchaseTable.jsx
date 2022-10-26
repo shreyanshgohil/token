@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 import SingleToken from "./SingleToken";
 const TokenPurchaseTable = (props) => {
   // inits
-  const { tokens, tokensDuplicate, changeQuantityHandler, grandTotal } = props;
-
+  const {
+    tokens,
+    tokensDuplicate,
+    changeQuantityHandler,
+    grandTotal,
+    removeTokenHandler,
+  } = props;
+  const { user } = useContext(UserContext);
   // JSX
   return (
     <div>
@@ -16,6 +23,7 @@ const TokenPurchaseTable = (props) => {
               <td> Available </td>
               <td> Quantity </td>
               <td> Amount </td>
+              {user?.typeOfUser === 1 && <td>modify</td>}
             </tr>
           </thead>
           <tbody>
@@ -27,6 +35,7 @@ const TokenPurchaseTable = (props) => {
                     tokensDuplicate={tokensDuplicate[index]}
                     index={index}
                     changeQuantityHandler={changeQuantityHandler}
+                    removeTokenHandler={removeTokenHandler}
                   />
                 </React.Fragment>
               );

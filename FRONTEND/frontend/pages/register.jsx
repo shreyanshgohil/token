@@ -38,7 +38,6 @@ const register = () => {
       email: data.email,
       password: data.password,
       userName: data.userName,
-      typeOfUser: 2,
     };
     await client.mutate({
       mutation: CREATE_USER,

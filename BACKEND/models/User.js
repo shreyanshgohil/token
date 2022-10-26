@@ -5,12 +5,12 @@ const userSchema = new mongoose.Schema(
     userName: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
     typeOfUser: {
       type: Number,
       enum: [1, 2],
-      required: true,
+      default: 2,
     },
   },
   { timestamps: true }

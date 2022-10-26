@@ -15,7 +15,6 @@ const userTypeDefs = gql`
     userName: String
     email: String
     password: String
-    typeOfUser: Int
   }
   type Query {
     getAllUsers: [User]

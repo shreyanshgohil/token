@@ -49,13 +49,12 @@ const userResolvers = {
     createUser: async (parent, args, context, info) => {
       try {
         const salt = await bcrypt.genSalt(10);
-        const { userName, email, password, typeOfUser } = args.user;
+        const { userName, email, password } = args.user;
         const hashedPassword = await bcrypt.hash(password, salt);
         const newUser = new User({
           userName,
           email,
           password: hashedPassword,
-          typeOfUser,
         });
         await newUser.save();
         return "new user created successfully";

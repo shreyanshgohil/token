@@ -11,6 +11,10 @@ const tokenTypeDefs = gql`
     tokenCreator: ID
     availableTokenQuantity: Int
   }
+  type Message {
+    status: Int
+    message: String
+  }
   input tokenInput {
     tokenColor: String
     tokenName: String
@@ -37,7 +41,7 @@ const tokenTypeDefs = gql`
       adminPassword: String!
       tokenId: ID!
     ): String
-    deleteToken(adminId: ID!, adminPassword: String!, tokenId: ID!): String
+    deleteToken(adminId: ID!, adminPassword: String!, tokenId: ID!): Message
     updateQuantity(updateData: [updateQuantity]): String
   }
 `;
