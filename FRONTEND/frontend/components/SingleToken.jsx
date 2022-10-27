@@ -93,11 +93,11 @@ const SingleToken = (props) => {
           <p>{tokensDuplicate.availableTokenQuantity}</p>
         </td>
         <td className="w-[209px]">
-          <div className="w-[209px] ">
+          <div className="w-[209px] flex">
             <button onClick={decrementQuantityHandler}>-</button>
             <input
               type="number"
-              className="focus:outline-none text-center"
+              className="focus:outline-none text-center max-w-[190px]"
               value={tokensDuplicate.quantity}
               onChange={tokenChangeQuantityHandler}
             />
