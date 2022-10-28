@@ -127,7 +127,7 @@ const SingleToken = (props) => {
       {showPopUp && (
         <PopUp
           closePopUpHandler={closePopUpHandler}
-          deleteTokenHandler={deleteTokenHandler}
+          confirmActionHandler={deleteTokenHandler}
         />
       )}
     </>

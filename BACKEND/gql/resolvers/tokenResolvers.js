@@ -43,12 +43,15 @@ const tokenResolvers = {
           if (isAdminAllowed && searchedUser.typeOfUser === 1) {
             const newToken = new Tokens(token);
             await newToken.save();
-            return "Token created sucessfully";
+            return { status: 200, message: "Token created sucessfully " };
           } else {
-            return "You are not allowed to create an token";
+            return {
+              status: 405,
+              message: "You are not allowed to create an token",
+            };
           }
         } else {
-          return "Please enter all required data";
+          return { status: 405, message: "Please enter all required data" };
         }
       } catch (err) {
         console.log(err);

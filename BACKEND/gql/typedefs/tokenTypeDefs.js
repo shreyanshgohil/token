@@ -34,7 +34,7 @@ const tokenTypeDefs = gql`
     filterTokens(typeOfToken: Int): [Token]
   }
   type Mutation {
-    createToken(token: tokenInput!, adminPassword: String!): String
+    createToken(token: tokenInput!, adminPassword: String!): Message
     updateToken(
       token: tokenInput
       adminId: ID!

@@ -19,7 +19,7 @@ const startServerHandler = async () => {
     });
     await apolloServer.start();
     apolloServer.applyMiddleware({ app });
-    app.listen(5001, () => {
+    app.listen(5000, () => {
       console.log("server is started");
     });
   } catch (err) {

@@ -98,7 +98,7 @@ const HomePage = () => {
         availableTokenQuantity: updatedTokenData.availableTokenQuantity,
       };
     });
-    await client.mutate({
+    const {data} = await client.mutate({
       mutation: SUBMIT_TOKENS,
       variables: {
         userUpdatedData,
@@ -137,7 +137,10 @@ const HomePage = () => {
                   <Link href={"/login"}>Login</Link>
                 )}
                 {user?.typeOfUser === 1 && (
-                  <Link href={"/createadmin"}>createadmin</Link>
+                  <>
+                    <Link href={"/createadmin"}>createadmin</Link>
+                    <Link href={"/addtoken"}>createtoken</Link>
+                  </>
                 )}
               </div>
             </div>
