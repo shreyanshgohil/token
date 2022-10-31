@@ -98,7 +98,7 @@ const HomePage = () => {
         availableTokenQuantity: updatedTokenData.availableTokenQuantity,
       };
     });
-    const {data} = await client.mutate({
+    const { data } = await client.mutate({
       mutation: SUBMIT_TOKENS,
       variables: {
         userUpdatedData,

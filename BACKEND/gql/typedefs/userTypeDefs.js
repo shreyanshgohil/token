@@ -20,6 +20,7 @@ const userTypeDefs = gql`
     getAllUsers: [User]
     getSingleUser(emailId: String!): User
     loginUser(emailId: String!, password: String!): StatusMessage
+    searchUsers(name: String!, limit: Int!): [User]
   }
   type Mutation {
     createUser(user: UserInput): String

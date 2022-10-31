@@ -4,7 +4,7 @@ const userResolvers = {
   Query: {
     getAllUsers: async (parent, args, context, info) => {
       try {
-        const users = await User.find();
+        const users = await User.find().limit(10);
         return users;
       } catch (err) {
         console.log(err);
@@ -42,6 +42,21 @@ const userResolvers = {
         }
       } else {
         return { success: false, message: "please enter email and passowrd" };
+      }
+    },
+    searchUsers: async (parent, args, context, info) => {
+      try {
+        const { name, limit } = args;
+        const regex = new RegExp(name);
+        const users = await User.find({
+          $or: [
+            { userName: { $regex: regex, $options: "i" } },
+            { email: { $regex: regex, $options: "i" } },
+          ],
+        });
+        return users;
+      } catch (err) {
+        console.log(err);
       }
     },
   },
